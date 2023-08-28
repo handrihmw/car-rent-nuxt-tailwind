@@ -13,7 +13,13 @@
 </template>
 
 <script setup>
-const { cars } = useCars();
+// const { cars } = useCars();
+const props = defineProps({
+  cars: {
+    type: Array,
+    required: true,
+  },
+});
 
 const favorite = useLocalStorage("favorites", {});
 

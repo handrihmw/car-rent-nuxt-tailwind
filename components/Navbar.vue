@@ -1,3 +1,24 @@
+<script setup>
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+
+const logout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  try {
+    await $fetch('/api/_supabase/session', {
+      method: 'POST',
+      body: { event: 'SIGNED_OUT', session: null },
+    })
+  } catch (error) {
+    return console.log(error)
+  }
+
+  user.value = null
+  navigateTo('/')
+}
+</script>
+
 <template>
   <nav class="bg-transparent">
     <div
@@ -14,6 +35,11 @@
           >CariOne</span
         >
       </NuxtLink>
+      <div v-if="user" class="flex">
+        <NuxtLink to="/profile/listings" class="mr-5">Profile</NuxtLink>
+        <p @click="logout" class="cursor-pointer">Logout</p>
+      </div>
+      <NuxtLink v-else to="/login" class="mr-5">Login</NuxtLink>
       <button
         data-collapse-toggle="navbar-solid-bg"
         type="button"

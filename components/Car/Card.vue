@@ -10,7 +10,7 @@
         class="absolute right-5 top-4 z-20 w-6 h-6"
       />
       <NuxtImg
-        :src="car.url"
+        :src="car.image"
         alt="{{ car.name }}"
         class="h-full w-[300px] rounded-l-md"
       />

@@ -2,7 +2,7 @@
   <div>
     <div class="mt-10">
       <NuxtImg
-        :src="car.url"
+        :src="car.image"
         class="w-full rounded-lg"
         alt="{{ car.name }}"
       />
@@ -11,7 +11,7 @@
         class="mt-3 flex justify-between border-b pb-5 text-lg text-slate-500"
       >
         <div class="flex">
-          <p class="mr-2">{{ car.seats }} seats</p>
+          <p class="mr-2">{{ car.numberOfSeats }} seats</p>
           <p class="mr-2">|</p>
           <p class="mr-2">{{ car.miles }} miles</p>
         </div>

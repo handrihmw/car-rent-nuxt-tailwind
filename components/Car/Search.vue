@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="mx-auto w-[1000px]overflow-hidden"
-  >
-  <div
+  <div class="mx-auto w-[1000px]overflow-hidden">
+    <div
       class="sticky mb-5 flex w-full items-center justify-between rounded-full bg-white p-2 shadow-lg"
       style="top: 5px"
     >
@@ -12,10 +10,12 @@
         :class="cityError ? 'border-2 border-red-500' : ''"
         placeholder="Search by city..."
         v-model="city"
+        @keydown.enter="handleEnterKey"
       />
 
       <div
-        class="mx-2 cursor-pointer rounded-full bg-gray-600 p-2 hover:bg-blue-400" @click="handleSearch"
+        class="mx-2 cursor-pointer rounded-full bg-gray-600 p-2 hover:bg-blue-400"
+        @click="handleSearch"
       >
         <svg
           class="h-6 w-6 text-white"
@@ -31,7 +31,7 @@
         </svg>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script setup>
@@ -43,5 +43,11 @@ const handleSearch = () => {
     return (cityError.value = true);
   }
   navigateTo(`/city/${city.value}/car`);
+};
+
+const handleEnterKey = (event) => {
+  if (event.key === "Enter") {
+    handleSearch();
+  }
 };
 </script>
